@@ -1,0 +1,451 @@
+body{
+    font-family: 'Charm', sans-serif !important;
+    background-color: #FFFFFF;
+}
+
+.header_items {
+    display: flex;
+    align-items: center;
+    justify-content:end; /* Pushes items to opposite ends */
+    position: relative;
+    height: 100px;
+    padding: 0 20px; /* Adds space from edges */
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the logo */
+}
+
+.photo{
+    width: 200px;
+    /* Set the width of the image */
+    height: 100px;
+    /* Set the height of the image */
+    object-fit: cover;
+}
+
+.cart, .profile {
+    display: flex;
+    border-style: hidden;
+    margin: 6px;
+    justify-content: space-between;
+}
+
+.cart i, .profile i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.navigation{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.home{
+    text-align: center;
+    color: black;
+    border: 2px;
+    height: 50px;
+}
+
+.home:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
+    background-color: #F7E7CE;
+}
+
+.rings{
+    text-align: center;
+    color: black;
+    border: 2px;
+    height: 50px;
+}
+
+.rings:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
+    background-color: #F7E7CE;
+}
+
+.bestsell{
+    text-align: center;
+    color: black;
+    border: 2px;
+    height: 50px;
+}
+
+.bestsell:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
+    background-color: #F7E7CE;
+}
+
+.collect{
+    text-align: center;
+    color: black;
+    border: 2px;
+    height: 50px;
+}
+
+.collect:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
+    background-color: #F7E7CE;
+}
+
+.blog{
+    text-align: center;
+    color: black;
+    border: 2px;
+    height: 50px;
+}
+
+.blog:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
+    background-color: #F7E7CE;
+}
+
+.hero{
+    background-image: url('/img/photo2.jpg');
+    background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    border: 4px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+}
+
+.cta_shop{
+    text-decoration-color: black;
+    border-style: solid;
+    border-radius: 96px;
+    border-color: none;
+    width: 80px;
+    height: 32px;
+    padding: 5px 10px;
+    text-align: center;
+    background-color: #B76E79;
+}
+
+.shop{
+    color: black;
+}
+
+.cta_shop:hover{
+    background-color: #F7E7CE;
+}
+
+.ftitle{
+    display: flex;
+    justify-content: center;
+}
+
+.featured {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.feats-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.feats {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.feats.active {
+    opacity: 1;
+}
+
+.desc {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Carousel Buttons */
+#prevBtn, #nextBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #B76E79;
+}
+
+#prevBtn {
+    left: 10px;
+}
+
+#nextBtn {
+    right: 10px;
+}
+
+#prevBtn:hover, #nextBtn:hover {
+    background: #F7E7CE;
+}
+
+
+h1, h2, h3, p {
+    color: #B76E79;
+}
+
+h2{
+    text-align: center;
+}
+
+.desc{
+    text-align: center;
+}
+
+.best_sellers {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.best-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.best {
+    width: 200px; /* Small items */
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    opacity: 0.7;
+    transform: scale(0.8);
+    transition: all 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+.best.active {
+    width: 300px; /* Larger center item */
+    height: 350px;
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation Buttons */
+#prev, #next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #B76E79;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+#prev { left: 10px; }
+#next { right: 10px; }
+
+#prev:hover, #next:hover {
+    background: #F7E7CE;
+}
+
+.addons {
+    display: flex;
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Spread items evenly */
+    padding: 10px 20px;
+    margin: 20px 0;
+    gap: 20px; /* Space between items */
+}
+
+/* Filter and Sort Buttons */
+#filter, .sort button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#filter:hover, .sort button:hover {
+    background-color: #F7E7CE; /* Darker rose gold on hover */
+}
+
+/* Search Form */
+.searchform {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchbox {
+    padding: 8px;
+    border: 2px solid #B76E79;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.searchbtn {
+    padding: 8px 15px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.searchbtn:hover {
+    background-color: #F7E7CE;
+}
+
+/* Section Title */
+.section-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+    color: #B76E79;
+}
+
+/* Grid Container */
+.ring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: auto;
+    max-width: 1200px;
+}
+
+/* Individual Ring Item */
+.ringitem {
+    background-color: white;
+    border: 1px solid #B76E79;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ringitem:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Ring Image */
+.ringimage {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ring Description */
+.ringdesc {
+    font-size: 1rem;
+    color: #B76E79;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+/* Ring Price */
+.ringprice {
+    font-size: 1.2rem;
+    color: #333;
+    background-color: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: fit-content;
+}
+
+#login-form{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: whitesmoke;
+}
+
+#credentials {
+    display: flex;
+    flex-direction: column; /* Stack input fields vertically */
+    gap: 15px;
+    width: 400px; /* Consistent width for all form sections */
+}
+
+#email-section, #password-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 10px;
+    justify-content: space-between;
+}
+
+
+input[type="email"], input[type="password"] {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #B76E79;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn:hover{
+    background-color: #F7E7CE; /* Darker rose gold on hover */
+}
+
+#login{
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+}
