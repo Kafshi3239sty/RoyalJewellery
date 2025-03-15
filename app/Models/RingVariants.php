@@ -16,6 +16,8 @@ class RingVariants extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'ringvariants';
+
     protected $fillable = [
         'RID',
         'size',

@@ -20,6 +20,14 @@ Route::get('/rings', [Users::class, 'ringsSection']);
 Route::get('/admin/Login', [Users::class, 'adminLoginForm']);
 Route::post('/admin/Login', [Users::class, 'adminLogin'])->name('adm');
 
+Route::get('/admin/dashboard', [Users::class, 'dashboard']);
+Route::get('/admin/your_products', [Users::class, 'products']);
+Route::get('/admin/your_products/add_product', [Users::class, 'addproduct']);
+Route::post('/admin/your_products/add_product', [Users::class, 'submitproduct'])->name('addp');
+Route::get('/admin/your_products/{id}', [Users::class, 'productdet']);
+Route::post('/admin/your_products/{id}/add_variation', [Users::class, 'productvardet'])->name('addpd');
+Route::get('/admin/sign_out', [Users::class, '']);
+
 Route::middleware('admin')->group(function(){
-    Route::get('/admin/dashboard', [Users::class, 'dashboard']);
+    
 });

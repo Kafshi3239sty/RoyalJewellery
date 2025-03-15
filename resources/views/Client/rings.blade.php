@@ -81,11 +81,14 @@
         <h1 class="section-title">Our Exclusive Ring Collection</h1>
         <div class="ring-grid">
             <!-- Repeat this block for each of the 40 items -->
+            @foreach($rings as $ring)
             <div class="ringitem">
-                <img src="{{URL::to('img/f1photo.jpg')}}" alt="Gold Filled Ring" class="ringimage">
-                <div class="ringdesc">Gold Filled with Zircon Crystals</div>
+
+                <!-- Ring Name -->
+                <div class="ringdesc">{{ $ring->rings()->price  }}</div>
                 <i class="fa-solid fa-cart-shopping"></i>
-                <div class="ringprice">$150.00</div>
+                <!-- Price -->
+                <div class="ringprice">Ksh{{ $ring->rings()->price }}</div>
             </div>
 
             <div class="ringitem">
@@ -121,6 +124,7 @@
                 <div class="ringprice">$200.00</div>
             </div>
             <!-- Add more ring items as needed (up to 40) -->
+            @endforeach
         </div>
     </section>
 

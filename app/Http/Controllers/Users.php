@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rings;
+use App\Models\RingVariants;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class Users extends Controller
@@ -24,6 +27,7 @@ class Users extends Controller
         ]);
         if (Auth::guard('admin')->attempt($credentials)) {
             $admin = Auth::guard('admin')->user();
+            $request->session()->regenerate();
             return redirect('/admin/dashboard');
 
             // Failed login
@@ -35,8 +39,61 @@ class Users extends Controller
 
     public function dashboard()
     {
-        return view('Admin/dasboard');
+        return view('Admin/dashboard');
     }
+
+    public function products(){
+        $rings = Rings::all();
+        return view('Admin/products', ['rings'=>$rings]);
+    }
+
+    public function addproduct(){
+        return view('Admin/addproduct');
+    }
+
+    public function submitproduct(Request $request): RedirectResponse
+    {
+        $new_ring = new Rings();
+        $new_ring->name = $request->name;
+        $new_ring->description = $request->description;
+        $new_ring->material = $request->material;
+        // Ensure a file is uploaded before saving
+        if ($request->hasFile('image')) {
+            $filePath = $request->file('image')->store('ring-images', 'public');
+            $new_ring->image_url = $filePath; // Store the file path only
+        } else {
+            return redirect()->back();
+        }
+
+        $new_ring->save();
+
+        return redirect('/admin/your_products');
+        
+    }
+
+    public function productdet($rid){
+        $ringdet = Rings::find($rid);
+        return view('Admin/productdetails', ['ring' => $ringdet]);
+    }
+
+    public function productvardet(Request $request, $rid) {
+        $ring = Rings::find($rid);
+    
+        if (!$ring) {
+            return redirect()->back()->withErrors(['error' => 'Ring not found']);
+        }
+    
+        $ringvar = new RingVariants();
+        $ringvar->RID = $ring->id; // Store the ring ID
+        $ringvar->size = $request->size;
+        $ringvar->Stock_quantity = $request->stock;
+        $ringvar->price = $request->price;
+        
+        $ringvar->save();
+        
+        return redirect('/admin/your_products')->with('success', 'Ring variation added successfully.');
+    }
+    
 
     public function homepage()
     {
@@ -45,7 +102,8 @@ class Users extends Controller
 
     public function ringsSection()
     {
-        return view('Client/rings');
+        $rings = RingVariants::all();
+        return view('Client/rings', ['rings'=>$rings]);
     }
 
     public function register() {}

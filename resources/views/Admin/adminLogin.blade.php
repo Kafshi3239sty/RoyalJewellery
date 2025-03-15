@@ -29,20 +29,40 @@
         <img src="{{URL::to('img/RoyalJewellery.png')}}" alt="Business Logo" class="photo">
     </div>
     <section id="login">
-        <div id="login-form">
+        <form id="login-form" method="POST" action="{{route('adm')}}">
+            @csrf
             <div id="credentials">
                 <div id="email-section">
-                    <p id="Email-text">Email</p>
+                    <label id="Email-text">Email</label>
                     <input type="email" name="Email" id="Email">
                 </div>
                 <div id="password-section">
-                    <p id="Password-text">Password</p>
+                    <label id="Password-text">Password</label>
                     <input type="password" name="password" id="Password">
                 </div>
-                <button type="button" class="btn btn-secondary btn-sm">Sign in</button>
+                <input type="submit" class="btn btn-secondary btn-sm" value="Sign in">
+            </div>
+        </form>
+    </section>
+
+    <footer class="logfooter">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2025 Royal Jewellery. All rights reserved.</p>
+            </div>
+            <div class="footer-center">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="footer-right">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
             </div>
         </div>
-    </section>
+    </footer>
 </body>
 
 </html>
