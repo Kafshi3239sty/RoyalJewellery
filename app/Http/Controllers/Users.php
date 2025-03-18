@@ -57,6 +57,7 @@ class Users extends Controller
         $new_ring->name = $request->name;
         $new_ring->description = $request->description;
         $new_ring->material = $request->material;
+        $new_ring->price = $request->price;
         // Ensure a file is uploaded before saving
         if ($request->hasFile('image')) {
             $filePath = $request->file('image')->store('ring-images', 'public');
@@ -87,7 +88,6 @@ class Users extends Controller
         $ringvar->RID = $ring->id; // Store the ring ID
         $ringvar->size = $request->size;
         $ringvar->Stock_quantity = $request->stock;
-        $ringvar->price = $request->price;
         
         $ringvar->save();
         
@@ -102,8 +102,13 @@ class Users extends Controller
 
     public function ringsSection()
     {
-        $rings = RingVariants::all();
+        $rings = Rings::all();
         return view('Client/rings', ['rings'=>$rings]);
+    }
+
+    public function ringsDetails($rid){
+        $ringdet = Rings::find($rid);
+        return view('Client/ringdetails', ['ring' => $ringdet]);
     }
 
     public function register() {}

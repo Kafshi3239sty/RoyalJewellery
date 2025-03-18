@@ -24,6 +24,6 @@ class Rings extends Model
 
     public function variants() : HasMany
     {
-        return $this->hasMany(RingVariants::class);
+        return $this->hasMany(RingVariants::class, 'RID', 'id');
     }
 }

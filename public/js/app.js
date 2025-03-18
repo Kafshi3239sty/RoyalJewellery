@@ -72,3 +72,22 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    let quantityInput = document.getElementById("quantity");
+    let increaseBtn = document.getElementById("increaseBtn");
+    let decreaseBtn = document.getElementById("decreaseBtn");
+
+    // Function to increase quantity
+    increaseBtn.addEventListener("click", function () {
+        let currentValue = parseInt(quantityInput.value) || 0;
+        quantityInput.value = currentValue + 1;
+    });
+
+    // Function to decrease quantity (preventing negative values)
+    decreaseBtn.addEventListener("click", function () {
+        let currentValue = parseInt(quantityInput.value) || 0;
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    });
+});

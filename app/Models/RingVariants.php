@@ -27,7 +27,7 @@ class RingVariants extends Model
 
     public function rings() : BelongsTo
     {
-        return $this->belongsTo(Rings::class);
+        return $this->belongsTo(Rings::class, 'RID', 'id');
     }
 
     public function orderdetails() : BelongsToMany

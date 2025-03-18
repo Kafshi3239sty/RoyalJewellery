@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('rings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->unsignedInteger('price');
             $table->text('description');
             $table->string('material');
             $table->string('image_url');

@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('js/app.js') }}">
     <script src="https://kit.fontawesome.com/e4f36ce664.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap -->
@@ -30,6 +31,12 @@
             <div class="header_items">
                 <div class="logo">
                     <img src="{{ URL::to('img/RoyalJewellery.png') }}" alt="Business Logo" class="photo">
+                </div>
+                <div class="cartheader">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="profile">
+                    <i class="fa-solid fa-user"></i>
                 </div>
             </div>
         </div>
@@ -66,7 +73,7 @@
         <!-- Back Button -->
         <section class="addons mb-4">
             <button class="btn btn-secondary">
-                <a href="/admin/your_products" class="text-white text-decoration-none">
+                <a href="/rings" class="text-white text-decoration-none">
                     <i class="fa-solid fa-arrow-left-long"></i> Back
                 </a>
             </button>
@@ -76,29 +83,63 @@
                 <img src="{{ Storage::url($ring->image_url) }}" alt="{{ $ring->name }}" class="ringimage">
             </div>
             <div class="prodinfo">
-                <div class="prodname"><p>{{ $ring->name }}</p></div>
-                <div class="proddet"><p>{{ $ring->description }}</p></div>
-                <form action="{{ route('addpd', ['id' => $ring->id]) }}" method="POST" enctype="multipart/form-data" class="">
-                @csrf
+                <div class="prodname">
+                    <p>{{ $ring->name }}</p>
+                </div>
+                <div class="proddet">
+                    <p>{{ $ring->description }}</p>
+                </div>
+                <div class="prodprice">Ksh{{ $ring->price }}</div>
+                <img src="{{ URL::to('img/gold-color.jpeg') }}" alt="Material color" class="material-color">
+                <div class="ringmat">Material: {{ $ring->material }}</div>
 
-                <!-- Ring Size -->
-                <div class="mb-3">
-                    <label for="name" class="form-label">Set Ring size</label>
-                    <input type="number" class="form-control" id="size" name="size" required>
+                <div class="input-group" id="inpg">
+                    <!-- Decrease button -->
+                    <button class="input-group-text" id="decreaseBtn">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+
+                    <!-- Input field -->
+                    <input type="text" class="form-control text-center" id="quantity" value="1" aria-label="Finger Width Size (mm)">
+
+                    <!-- Increase button -->
+                    <button class="input-group-text" id="increaseBtn">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
                 </div>
 
-                <!-- Stock Quantity -->
-                <div class="mb-3">
-                    <label for="price" class="form-label">Stock Quantity</label>
-                    <input type="number" class="form-control" id="stock" name="stock" required>
-                </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary w-100">Add Ring Variations</button>
-            </form>
+                <div class="addcart"><a href=""><button type="submit" class="btn btn-secondary cart">Add to cart</button></a></div>
+                <button class="btn collapsebtn" type="button" data-bs-toggle="collapse" data-bs-target="#productdescCollapse" aria-expanded="false" aria-controls="collapseExample">
+                    <h4>PRODUCT DESCRIPTION</h4><i class="fa-solid fa-angle-down"></i>
+                </button>
+                <div class="collapse" id="productdescCollapse">
+                    <div class="card card-body">
+                        {{ $ring->description }}
+                    </div>
+                </div>
+                </p>
             </div>
         </section>
     </main>
+    <footer class="logfooter">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2025 Royal Jewellery. All rights reserved.</p>
+            </div>
+            <div class="footer-center">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="footer-right">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

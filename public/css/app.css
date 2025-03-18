@@ -1,4 +1,4 @@
-body{
+body {
     font-family: 'Charm', sans-serif !important;
     background-color: #FFFFFF;
 }
@@ -6,19 +6,22 @@ body{
 .header_items {
     display: flex;
     align-items: center;
-    justify-content:end; /* Pushes items to opposite ends */
+    justify-content: end;
+    /* Pushes items to opposite ends */
     position: relative;
     height: 100px;
-    padding: 0 20px; /* Adds space from edges */
+    padding: 0 20px;
+    /* Adds space from edges */
 }
 
 .logo {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* Centers the logo */
+    transform: translateX(-50%);
+    /* Centers the logo */
 }
 
-.photo{
+.photo {
     width: 200px;
     /* Set the width of the image */
     height: 100px;
@@ -26,88 +29,93 @@ body{
     object-fit: cover;
 }
 
-.cart, .profile {
+.cartheader,
+.profile {
     display: flex;
     border-style: hidden;
     margin: 6px;
     justify-content: space-between;
 }
 
-.cart i, .profile i {
+.cartheader i,
+.profile i {
     font-size: 20px;
     cursor: pointer;
 }
 
-.navigation{
+.navigation {
     display: grid;
     grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
-.home{
+.home {
     text-align: center;
     color: black;
     border: 2px;
     height: 50px;
 }
 
-.home:hover{
+.home:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
     background-color: #F7E7CE;
 }
 
-.rings{
+.rings {
     text-align: center;
     color: black;
     border: 2px;
     height: 50px;
 }
 
-.rings:hover{
+.rings:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
     background-color: #F7E7CE;
 }
 
-.bestsell{
+.bestsell {
     text-align: center;
     color: black;
     border: 2px;
     height: 50px;
 }
 
-.bestsell:hover{
+.bestsell:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
     background-color: #F7E7CE;
 }
 
-.collect{
+.collect {
     text-align: center;
     color: black;
     border: 2px;
     height: 50px;
 }
 
-.collect:hover{
+.collect:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
     background-color: #F7E7CE;
 }
 
-.blog{
+.blog {
     text-align: center;
     color: black;
     border: 2px;
     height: 50px;
 }
 
-.blog:hover{
+.blog:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), -10px -10px 10px white;
     background-color: #F7E7CE;
 }
 
-.hero{
+.hero {
     background-image: url('/img/photo2.jpg');
-    background-size: cover; /* Ensures the image covers the entire div */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents tiling */
+    background-size: cover;
+    /* Ensures the image covers the entire div */
+    background-position: center;
+    /* Centers the image */
+    background-repeat: no-repeat;
+    /* Prevents tiling */
     border: 4px;
     height: 350px;
     display: flex;
@@ -115,7 +123,7 @@ body{
     padding-left: 40px;
 }
 
-.cta_shop{
+.cta_shop {
     text-decoration-color: black;
     border-style: solid;
     border-radius: 96px;
@@ -127,15 +135,15 @@ body{
     background-color: #B76E79;
 }
 
-.shop{
+.shop {
     color: black;
 }
 
-.cta_shop:hover{
+.cta_shop:hover {
     background-color: #F7E7CE;
 }
 
-.ftitle{
+.ftitle {
     display: flex;
     justify-content: center;
 }
@@ -180,7 +188,8 @@ body{
 }
 
 /* Carousel Buttons */
-#prevBtn, #nextBtn {
+#prevBtn,
+#nextBtn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -201,20 +210,24 @@ body{
     right: 10px;
 }
 
-#prevBtn:hover, #nextBtn:hover {
+#prevBtn:hover,
+#nextBtn:hover {
     background: #F7E7CE;
 }
 
 
-h1, h2, h3, p {
+h1,
+h2,
+h3,
+p {
     color: #B76E79;
 }
 
-h2{
+h2 {
     text-align: center;
 }
 
-.desc{
+.desc {
     text-align: center;
 }
 
@@ -235,7 +248,8 @@ h2{
 }
 
 .best {
-    width: 200px; /* Small items */
+    width: 200px;
+    /* Small items */
     height: 250px;
     background-size: cover;
     background-position: center;
@@ -252,7 +266,8 @@ h2{
 }
 
 .best.active {
-    width: 300px; /* Larger center item */
+    width: 300px;
+    /* Larger center item */
     height: 350px;
     opacity: 1;
     transform: scale(1);
@@ -260,7 +275,8 @@ h2{
 }
 
 /* Navigation Buttons */
-#prev, #next {
+#prev,
+#next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -272,24 +288,34 @@ h2{
     border-radius: 50%;
 }
 
-#prev { left: 10px; }
-#next { right: 10px; }
+#prev {
+    left: 10px;
+}
 
-#prev:hover, #next:hover {
+#next {
+    right: 10px;
+}
+
+#prev:hover,
+#next:hover {
     background: #F7E7CE;
 }
 
 .addons {
     display: flex;
-    align-items: center; /* Vertically center items */
-    justify-content: space-between; /* Spread items evenly */
+    align-items: center;
+    /* Vertically center items */
+    justify-content: space-between;
+    /* Spread items evenly */
     padding: 10px 20px;
     margin: 20px 0;
-    gap: 20px; /* Space between items */
+    gap: 20px;
+    /* Space between items */
 }
 
 /* Filter and Sort Buttons */
-#filter, .sort button {
+#filter,
+.sort button {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -302,8 +328,10 @@ h2{
     transition: background-color 0.3s;
 }
 
-#filter:hover, .sort button:hover {
-    background-color: #F7E7CE; /* Darker rose gold on hover */
+#filter:hover,
+.sort button:hover {
+    background-color: #F7E7CE;
+    /* Darker rose gold on hover */
 }
 
 /* Search Form */
@@ -405,7 +433,7 @@ h2{
     width: fit-content;
 }
 
-#login-form{
+#login-form {
     display: flex;
     justify-content: center;
     padding: 20px;
@@ -417,12 +445,15 @@ h2{
 
 #credentials {
     display: flex;
-    flex-direction: column; /* Stack input fields vertically */
+    flex-direction: column;
+    /* Stack input fields vertically */
     gap: 15px;
-    width: 400px; /* Consistent width for all form sections */
+    width: 400px;
+    /* Consistent width for all form sections */
 }
 
-#email-section, #password-section {
+#email-section,
+#password-section {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -431,7 +462,8 @@ h2{
 }
 
 
-input[type="email"], input[type="password"] {
+input[type="email"],
+input[type="password"] {
     padding: 10px;
     width: 250px;
     border: 1px solid #B76E79;
@@ -439,29 +471,35 @@ input[type="email"], input[type="password"] {
     font-size: 16px;
 }
 
-.btn:hover{
-    background-color: #F7E7CE; /* Darker rose gold on hover */
+.btn:hover {
+    background-color: #F7E7CE;
+    /* Darker rose gold on hover */
 }
 
-#login{
-    height: 100vh; /* Full viewport height */
+#login {
+    height: 100vh;
+    /* Full viewport height */
     display: flex;
-    justify-content: center; /* Horizontal center */
-    align-items: center; /* Vertical center */
+    justify-content: center;
+    /* Horizontal center */
+    align-items: center;
+    /* Vertical center */
 }
 
 /* Footer Styles */
 .logfooter {
-    background-color: #B76E79; /* Rose gold background */
+    background-color: #B76E79;
+    /* Rose gold background */
     color: white;
     padding: 15px 0;
-    position: fixed;
+    position: relative;
     width: 100%;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Make sure it's above other elements */
+    z-index: 1000;
+    /* Make sure it's above other elements */
 }
 
 .footer-content {
@@ -487,7 +525,8 @@ input[type="email"], input[type="password"] {
 }
 
 .footer-center a:hover {
-    color: #F7E7CE; /* Light beige on hover */
+    color: #F7E7CE;
+    /* Light beige on hover */
 }
 
 .footer-right a {
@@ -501,26 +540,26 @@ input[type="email"], input[type="password"] {
     background-color: #F7E7CE;
 }
 
-.offcanvas-body{
+.offcanvas-body {
     display: grid;
     grid-template-rows: auto;
 }
 
-.dashboard{
-    text-align: center;
-    background-color:#B76E79;
-    color: black;
-    border: 2px;
-}
-
-.collections{
+.dashboard {
     text-align: center;
     background-color: #B76E79;
     color: black;
     border: 2px;
 }
 
-.sign-out{
+.collections {
+    text-align: center;
+    background-color: #B76E79;
+    color: black;
+    border: 2px;
+}
+
+.sign-out {
     text-align: center;
     background-color: #B76E79;
     color: black;
@@ -528,12 +567,62 @@ input[type="email"], input[type="password"] {
 }
 
 /* Hover effect */
-.dashboard:hover, .collections:hover, .sign-out:hover {
+.dashboard:hover,
+.collections:hover,
+.sign-out:hover {
     background-color: #F7E7CE;
     transform: scale(1.05);
 }
 
 
-.menu-text, .add-ring{
+.menu-text,
+.add-ring {
     color: black;
+}
+
+.productDescription {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 60px;
+    padding: 20px;
+}
+
+
+.cart {
+    background-color: #B76E79 !important;
+    color: #FFFFFF;
+    border: 2px solid #B76E79 !important;
+    height: 30%;
+    width: 80%;
+    text-align: center;
+    border-radius: 10%;
+}
+
+.cart:hover {
+    background-color: #F7E7CE !important;
+    color: black !important;
+}
+
+.material-color {
+    height: 10%;
+    border: none;
+    border-radius: 80%;
+}
+
+.collapsebtn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important; /* Push text and icon to opposite ends */
+    width: 100%;
+    border-top: solid #B76E79;
+    background-color: transparent; /* Optional: To remove any default button background */
+    border: none; /* Optional: Remove default border */
+    padding: 10px; /* Adjust spacing */
+    font-size: 18px; /* Make text readable */
+    font-weight: bold; /* Emphasize the button */
+    cursor: pointer; /* Indicate clickability */
+}
+
+.collapsebtn i {
+    font-size: 20px; /* Adjust icon size */
 }

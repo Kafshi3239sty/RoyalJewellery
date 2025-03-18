@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedInteger('RID');
             $table->unsignedInteger('size');
             $table->unsignedInteger('Stock_quantity');
-            $table->unsignedInteger('price');
             $table->timestamps();
 
             $table->foreign('RID')->references('id')->on('rings');

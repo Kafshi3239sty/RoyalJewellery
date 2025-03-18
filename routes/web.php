@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Users::class, 'homepage']);
 Route::get('/rings', [Users::class, 'ringsSection']);
+Route::get('/rings/{id}', [Users::class, 'ringsDetails']);
+
 Route::get('/admin/Login', [Users::class, 'adminLoginForm']);
 Route::post('/admin/Login', [Users::class, 'adminLogin'])->name('adm');
-
 Route::get('/admin/dashboard', [Users::class, 'dashboard']);
 Route::get('/admin/your_products', [Users::class, 'products']);
 Route::get('/admin/your_products/add_product', [Users::class, 'addproduct']);

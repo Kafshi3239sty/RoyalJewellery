@@ -32,7 +32,7 @@
                 <div class="logo">
                     <img src="{{URL::to('img/RoyalJewellery.png')}}" alt="Business Logo" class="photo">
                 </div>
-                <div class="cart">
+                <div class="cartheader">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
                 <div class="profile">
@@ -82,48 +82,18 @@
         <div class="ring-grid">
             <!-- Repeat this block for each of the 40 items -->
             @foreach($rings as $ring)
-            <div class="ringitem">
-
-                <!-- Ring Name -->
-                <div class="ringdesc">{{ $ring->rings()->price  }}</div>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <!-- Price -->
-                <div class="ringprice">Ksh{{ $ring->rings()->price }}</div>
-            </div>
-
-            <div class="ringitem">
-                <img src="{{URL::to('img/b1photo.jpg')}}" alt="Diamond Wedding Band" class="ringimage">
-                <div class="ringdesc">Diamond Wedding Band</div>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <div class="ringprice">$200.00</div>
-            </div>
-            <div class="ringitem">
-                <img src="{{URL::to('img/f1photo.jpg')}}" alt="Gold Filled Ring" class="ringimage">
-                <div class="ringdesc">Gold Filled with Zircon Crystals</div>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <div class="ringprice">$150.00</div>
-            </div>
-
-            <div class="ringitem">
-                <img src="{{URL::to('img/b1photo.jpg')}}" alt="Diamond Wedding Band" class="ringimage">
-                <div class="ringdesc">Diamond Wedding Band</div>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <div class="ringprice">$200.00</div>
-            </div>
-            <div class="ringitem">
-                <img src="{{URL::to('img/f1photo.jpg')}}" alt="Gold Filled Ring" class="ringimage">
-                <div class="ringdesc">Gold Filled with Zircon Crystals</div>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <div class="ringprice">$150.00</div>
-            </div>
-
-            <div class="ringitem">
-                <img src="{{URL::to('img/b1photo.jpg')}}" alt="Diamond Wedding Band" class="ringimage">
-                <div class="ringdesc">Diamond Wedding Band</div>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <div class="ringprice">$200.00</div>
-            </div>
-            <!-- Add more ring items as needed (up to 40) -->
+            <a href="{{URL::to('/rings/'.$ring->id)}}" class="add-ring">
+                <div class="ringitem">
+                    <!-- Image -->
+                    <img src="{{ Storage::url($ring->image_url) }}" alt="{{ $ring->name }}" class="ringimage">
+                    <!-- Ring Name -->
+                    <div class="ringdesc">{{ $ring->name }}</div>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <!-- Price -->
+                    <div class="ringprice">Ksh{{ $ring->price }}</div>
+                </div>
+                <!-- Add more ring items as needed (up to 40) -->
+            </a>
             @endforeach
         </div>
     </section>
@@ -148,6 +118,24 @@
         </ul>
     </nav>
 
+    <footer class="logfooter">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2025 Royal Jewellery. All rights reserved.</p>
+            </div>
+            <div class="footer-center">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="footer-right">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
