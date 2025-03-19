@@ -36,6 +36,10 @@
                     <label id="Name-text">Name</label>
                     <input type="text" name="name" id="name">
                 </div>
+                <div id="id-section">
+                    <label id="ID-text">National ID: </label>
+                    <input type="number" name="id" id="id">
+                </div>
                 <div id="email-section">
                     <label id="Email-text">Email</label>
                     <input type="email" name="Email" id="Email">

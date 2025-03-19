@@ -455,6 +455,7 @@ h2 {
 #email-section,
 #password-section,
 #name-section,
+#id-section,
 #phone-section,
 #address-section {
     display: flex;
