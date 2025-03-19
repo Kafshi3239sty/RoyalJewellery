@@ -94,6 +94,47 @@ class Users extends Controller
         return redirect('/admin/your_products')->with('success', 'Ring variation added successfully.');
     }
     
+    
+    public function register() {
+        return view('Client/register');
+    }
+
+    public function store(Request $request): RedirectResponse {
+        $customer = new User();
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->password = $request->password;
+        $customer->phone = $request->phone;
+        $customer->role = 'Customer';
+        $customer->address = $request->address;
+
+        $customer->save();
+
+        return redirect('/admin/your_products');
+    }
+
+    public function loginPage()
+    {
+        return view('Client/login');
+    }
+
+    public function login(Request $request) {
+        // Validate the form data
+        $credentials =  $request->validate([
+            'Email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if (Auth::guard('customer')->attempt($credentials)) {
+            $customer = Auth::guard('customer')->user();
+            $request->session()->regenerate();
+            return redirect('/');
+
+            // Failed login
+            return redirect('/login')->withErrors([
+                'email' => 'Invalid email or password',
+            ]);
+        }
+    }
 
     public function homepage()
     {
@@ -111,11 +152,6 @@ class Users extends Controller
         return view('Client/ringdetails', ['ring' => $ringdet]);
     }
 
-    public function register() {}
-
-    public function store(User $user) {}
-
-    public function login(User $user) {}
 
     public function logout(User $user) {}
 }

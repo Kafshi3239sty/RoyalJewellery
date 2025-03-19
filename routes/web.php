@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Users::class, 'homepage']);
 Route::get('/rings', [Users::class, 'ringsSection']);
 Route::get('/rings/{id}', [Users::class, 'ringsDetails']);
+Route::get('/register', [Users::class, 'register']);
+Route::post('/register', [Users::class, 'store'])->name('reg');
+Route::get('/login', [Users::class, 'loginPage']);
+Route::post('/login', [Users::class, 'login'])->name('cli');
 
 Route::get('/admin/Login', [Users::class, 'adminLoginForm']);
 Route::post('/admin/Login', [Users::class, 'adminLogin'])->name('adm');

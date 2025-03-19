@@ -46,6 +46,11 @@ return [
         'admin' => [
             'driver' => 'session',
             'provider' => 'Administration',
+        ],
+
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'cust',
         ]
     ],
 
@@ -73,6 +78,11 @@ return [
         ],
 
         'Administration' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'cust' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],

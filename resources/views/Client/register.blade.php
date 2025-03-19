@@ -29,21 +29,33 @@
         <img src="{{URL::to('img/RoyalJewellery.png')}}" alt="Business Logo" class="photo">
     </div>
     <section id="login">
-        <form id="login-form" method="POST" action="{{route('cli')}}">
+        <form id="login-form" method="POST" action="{{route('reg')}}">
             @csrf
             <div id="credentials">
+                <div id="name-section">
+                    <label id="Name-text">Name</label>
+                    <input type="text" name="name" id="name">
+                </div>
                 <div id="email-section">
                     <label id="Email-text">Email</label>
                     <input type="email" name="Email" id="Email">
+                </div>
+                <div id="phone-section">
+                    <label id="phone-text">Phone Number</label>
+                    <input type="number" name="phone" id="phone">
+                </div>
+                <div id="address-section">
+                    <label id="address-text">Address</label>
+                    <input type="text" name="address" id="address">
                 </div>
                 <div id="password-section">
                     <label id="Password-text">Password</label>
                     <input type="password" name="password" id="Password">
                 </div>
-                <input type="submit" class="btn btn-secondary btn-sm" value="Sign in">
+                <input type="submit" class="btn btn-secondary btn-sm" value="Sign Up">
                 <div id="reglink">
-                <a href="/register" class="registerlink">Create an account</a>
-            </div>
+                    <a href="/register" class="registerlink">Create an account</a>
+                </div>
             </div>
         </form>
     </section>

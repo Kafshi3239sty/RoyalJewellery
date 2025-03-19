@@ -15,8 +15,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('js/app.js') }}">
     <script src="https://kit.fontawesome.com/e4f36ce664.js" crossorigin="anonymous"></script>
+    <script src="{{URL::to('js/app.js')}}"></script>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -93,19 +93,22 @@
                 <img src="{{ URL::to('img/gold-color.jpeg') }}" alt="Material color" class="material-color">
                 <div class="ringmat">Material: {{ $ring->material }}</div>
 
-                <div class="input-group" id="inpg">
-                    <!-- Decrease button -->
-                    <button class="input-group-text" id="decreaseBtn">
-                        <i class="fa-solid fa-minus"></i>
-                    </button>
+                <div class="ringsize">
+                    <div class="rs"><p>Ring Size (mm): </p></div>
+                    <div class="input-group" id="inpg">
+                        <!-- Decrease button -->
+                        <button class="input-group-text" id="decreaseBtn">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
 
-                    <!-- Input field -->
-                    <input type="text" class="form-control text-center" id="quantity" value="1" aria-label="Finger Width Size (mm)">
+                        <!-- Input field -->
+                        <input type="text" class="form-control text-center" id="quantity" value="1" aria-label="Finger Width Size (mm)">
 
-                    <!-- Increase button -->
-                    <button class="input-group-text" id="increaseBtn">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
+                        <!-- Increase button -->
+                        <button class="input-group-text" id="increaseBtn">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
                 </div>
 
 

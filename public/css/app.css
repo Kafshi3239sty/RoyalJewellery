@@ -15,9 +15,9 @@ body {
 }
 
 .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative; /* Change from absolute */
+    text-align: center;
+    margin-top: 20px; /* Add margin to create space */
     /* Centers the logo */
 }
 
@@ -453,7 +453,10 @@ h2 {
 }
 
 #email-section,
-#password-section {
+#password-section,
+#name-section,
+#phone-section,
+#address-section {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -463,7 +466,9 @@ h2 {
 
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"],
+input[type="number"] {
     padding: 10px;
     width: 250px;
     border: 1px solid #B76E79;
@@ -625,4 +630,38 @@ input[type="password"] {
 
 .collapsebtn i {
     font-size: 20px; /* Adjust icon size */
+}
+
+.ringsize {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    gap: 10px; /* Space between label and input field */
+}
+
+.rs p {
+    margin: 0; /* Remove default paragraph margins */
+    font-weight: bold;
+}
+
+.input-group {
+    display: flex;
+    align-items: center; /* Align buttons and input vertically */
+    width: fit-content; /* Adjust width based on content */
+}
+
+#reglink {
+    display: flex !important;
+    justify-content: center !important; /* Center it under the form */
+    margin-top: 15px !important; /* Space between login button and register link */
+}
+
+.registerlink {
+    text-decoration: none !important;
+    color: #B76E79; /* Rose Gold */
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.registerlink:hover {
+    color: #F7E7CE; /* Light beige on hover */
 }
