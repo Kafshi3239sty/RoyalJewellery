@@ -28,12 +28,18 @@
                 <div class="logo">
                     <img src="{{URL::to('img/RoyalJewellery.png')}}" alt="Business Logo" class="photo">
                 </div>
-                <div class="cart">
+                <div class="cartheader">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
-                <div class="profile">
+                <div class="profile dropdown">
                     <i class="fa-solid fa-user"></i>
+                    <div class="dropdown-menu">
+                        <a href="/profile">Profile</a>
+                        <a href="/settings">Settings</a>
+                        <a href="/logout">Logout</a>
+                    </div>
                 </div>
+
             </div>
 
         </div>

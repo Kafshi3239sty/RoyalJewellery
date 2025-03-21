@@ -1,11 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RingsController;
 use App\Http\Controllers\RingVariants;
 use App\Http\Controllers\Users;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,22 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/register', [Users::class, 'register']);
-Route::post('/register', [Users::class, 'store'])->name('reg');
-Route::get('/login', [Users::class, 'loginPage']);
-Route::post('/login', [Users::class, 'login'])->name('cli');
-Route::get('/email/verify', [Users::class, 'emailNotice']);
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect('/login');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-Route::post('/sign_out', [Users::class, ''])->name('logout');
 Route::get('/', [Users::class, 'homepage']);
 Route::get('/rings', [RingsController::class, 'show']);
 Route::get('/rings/{id}', [RingVariants::class, 'ringsDetails']);
@@ -49,4 +31,15 @@ Route::get('/admin/your_products/{id}', [RingVariants::class, 'productdet']);
 Route::post('/admin/your_products/{id}/add_variation', [RingVariants::class, 'productvardet'])->name('addpd');
 Route::get('/admin/sign_out', [Users::class, '']);
 
-Route::middleware('admin')->group(function () {});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

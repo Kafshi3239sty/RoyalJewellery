@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -49,26 +50,33 @@ class Users extends Controller
         return view('Client/register');
     }
 
-    public function store(Request $request): RedirectResponse {
-        $customer = new User();
-        $customer->id = $request->id;
-        $customer->name = $request->name;
-        $customer->email = $request->Email;
-        $customer->password = Hash::make($request->password);
-        $customer->phone = $request->phone;
-        $customer->role = 'Customer';
-        $customer->address = $request->address;
-
-        $customer->save();
-
+    public function store(Request $request): Response {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'phone' => 'required|string|max:15',
+            'address' => 'required|string|max:255',
+        ]);
+    
+        $customer = User::create([
+            'name' => $request->name,
+            'email' => $request->email, // Ensure this is lowercase
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'role' => 'Customer',
+            'address' => $request->address,
+        ]);
+    
+        // Fire Registered event (this automatically sends email verification)
         event(new Registered($customer));
 
-        return redirect('/login');
+        Auth::login($customer);
+    
+        return response()->noContent();
     }
+    
 
-    public function emailNotice(){
-        return view('Client/verify-email');
-    }
 
     public function loginPage()
     {
@@ -86,11 +94,11 @@ class Users extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/');
 
+        }
             // Failed login
             return redirect('/login')->withErrors([
                 'email' => 'Invalid email or password',
             ])->onlyInput('Email');
-        }
     }
 
     public function homepage()
