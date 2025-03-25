@@ -35,8 +35,17 @@
                 <div class="cartheader">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
-                <div class="profile">
+                <div class="profile dropdown">
+                    {{ auth()->guard('customer')->user()->name }}
                     <i class="fa-solid fa-user"></i>
+                    <div class="dropdown-menu">
+                        <a href="/profile">Profile</a>
+                        <a href="/settings">Settings</a>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
             </div>
 

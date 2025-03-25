@@ -32,11 +32,23 @@
                 <div class="logo">
                     <img src="{{ URL::to('img/RoyalJewellery.png') }}" alt="Business Logo" class="photo">
                 </div>
-                <div class="cartheader">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-                <div class="profile">
-                    <i class="fa-solid fa-user"></i>
+                <div class="right-items">
+                    <div class="cartheader" id="cartIcon" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cartCount" class="cart-badge">0</span>
+                    </div>
+                    <div class="profile dropdown">
+                        {{ auth()->guard('customer')->user()->name }}
+                        <i class="fa-solid fa-user"></i>
+                        <div class="dropdown-menu">
+                            <a href="/profile">Profile</a>
+                            <a href="/settings">Settings</a>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,7 +106,9 @@
                 <div class="ringmat">Material: {{ $ring->material }}</div>
 
                 <div class="ringsize">
-                    <div class="rs"><p>Ring Size (mm): </p></div>
+                    <div class="rs">
+                        <p>Ring Size (mm): </p>
+                    </div>
                     <div class="input-group" id="inpg">
                         <!-- Decrease button -->
                         <button class="input-group-text" id="decreaseBtn">
@@ -111,8 +125,13 @@
                     </div>
                 </div>
 
+                <div class="addcart">
+                    <button type="button" class="btn btn-secondary cart"
+                        onclick="addToCart({{ $ring->id }}, '{{ $ring->name }}', {{ $ring->price }}, '{{ Storage::url($ring->image_url) }}')">
+                        Add to cart
+                    </button>
 
-                <div class="addcart"><a href=""><button type="submit" class="btn btn-secondary cart">Add to cart</button></a></div>
+                </div>
                 <button class="btn collapsebtn" type="button" data-bs-toggle="collapse" data-bs-target="#productdescCollapse" aria-expanded="false" aria-controls="collapseExample">
                     <h4>PRODUCT DESCRIPTION</h4><i class="fa-solid fa-angle-down"></i>
                 </button>
@@ -143,6 +162,20 @@
             </div>
         </div>
     </footer>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Shopping Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul id="cartItemsList" class="list-group"></ul>
+            <div class="mt-3">
+                <button class="btn btn-primary w-100" onclick="window.location.href='/cart'">View Shopping Bag</button>
+                <button class="btn btn-primary w-100 mt-3" onclick="window.location.href='/checkout'">Checkout<i class="fa-solid fa-credit-card"></i></button>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

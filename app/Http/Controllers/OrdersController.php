@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderDetails;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class OrdersController extends Controller
     public function index()
     {
         //
+
+        return view('Client/cart');
     }
 
     /**
@@ -21,6 +24,21 @@ class OrdersController extends Controller
     public function create()
     {
         //
+        $new_order = new Orders();
+        $new_order->user_id = auth('customer')->id();
+        $new_order->total_price;
+        $new_order->status;
+
+        $new_order->save();
+
+        $new_orderDetails = new OrderDetails();
+        $new_orderDetails->order_id;
+        $new_orderDetails->RVID;
+        $new_orderDetails->quantity;
+        $new_orderDetails->price;
+
+        $new_orderDetails->save();
+
     }
 
     /**

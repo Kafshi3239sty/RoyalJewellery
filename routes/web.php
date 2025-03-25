@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RingsController;
 use App\Http\Controllers\RingVariants;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Users::class, 'homepage']);
 Route::get('/rings', [RingsController::class, 'show']);
 Route::get('/rings/{id}', [RingVariants::class, 'ringsDetails']);
+Route::get('/cart', [OrdersController::class, 'index']);
 
 Route::get('/admin/Login', [Users::class, 'adminLoginForm']);
 Route::post('/admin/Login', [Users::class, 'adminLogin'])->name('adm');

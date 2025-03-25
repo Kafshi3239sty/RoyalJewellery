@@ -89,11 +89,11 @@ class Users extends Controller
             'Email' => 'required|email',
             'password' => 'required',
         ]);
-        if (Auth::guard('customer')->attempt($credentials)) {
-            $customer = Auth::guard('customer')->user();
+        $remember = $request->has('remember'); // Check if Remember Me is checked
+
+        if (Auth::guard('customer')->attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended('/');
-
         }
             // Failed login
             return redirect('/login')->withErrors([
@@ -107,7 +107,14 @@ class Users extends Controller
     }
 
 
-    public function logout(User $user) {}
-
-    //End of Client backend
-}
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+     
+        $request->session()->invalidate();
+     
+        $request->session()->regenerateToken();
+     
+        return redirect('/login');
+    }
+} 

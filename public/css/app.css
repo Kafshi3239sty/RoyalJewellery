@@ -6,9 +6,7 @@ body {
 .header_items {
     display: flex;
     align-items: center;
-    justify-content: end;
-    /* Pushes items to opposite ends */
-    position: relative;
+    justify-content: space-between; /* Spread items */
     height: 100px;
     padding: 0 20px;
     /* Adds space from edges */
@@ -20,6 +18,7 @@ body {
     margin-top: 20px; /* Add margin to create space */
     /* Centers the logo */
 }
+
 
 .photo {
     width: 200px;
@@ -34,7 +33,7 @@ body {
     display: flex;
     border-style: hidden;
     margin: 6px;
-    justify-content: space-between;
+    justify-content: right;
 }
 
 .cartheader i,
@@ -77,6 +76,18 @@ body {
 /* Show dropdown on hover */
 .profile:hover .dropdown-menu {
     display: block;
+}
+
+.cart-badge {
+    position: relative;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 
