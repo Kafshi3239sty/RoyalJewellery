@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RingsController;
 use App\Http\Controllers\RingVariants;
 use App\Http\Controllers\Users;
+use App\Models\RingVariants as ModelsRingVariants;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,13 @@ Route::get('/', [Users::class, 'homepage']);
 Route::get('/rings', [RingsController::class, 'show']);
 Route::get('/rings/{id}', [RingVariants::class, 'ringsDetails']);
 Route::get('/cart', [OrdersController::class, 'index']);
+Route::post('/orders/store', [OrdersController::class, 'store'])->name('orders.store');
+
+Route::get('/check-size/{ring}/{size}', [RingVariants::class, 'checkSize']);
+
+
+Route::post('/checkout', [OrdersController::class, 'store']);
+
 
 Route::get('/admin/Login', [Users::class, 'adminLoginForm']);
 Route::post('/admin/Login', [Users::class, 'adminLogin'])->name('adm');

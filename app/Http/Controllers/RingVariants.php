@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
 use App\Models\Rings;
 use App\Models\RingVariants as ModelsRingVariants;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RingVariants extends Controller
 {
@@ -37,6 +39,23 @@ class RingVariants extends Controller
     public function ringsDetails($rid)
     {
         $ringdet = Rings::find($rid);
-        return view('Client/ringdetails', ['ring' => $ringdet]);
+        $orders = Orders::all()->where('user_id', Auth::id());
+        return view('Client/ringdetails', ['ring' => $ringdet, 'orders' => $orders]);
+    }
+
+    public function checkSize($ringId, $size) {
+        $variant = ModelsRingVariants::where('RID', $ringId)
+                              ->where('size', $size)
+                              ->where('Stock_quantity', '>', 0)
+                              ->first();
+        
+        if ($variant) {
+            return response()->json([
+                'available' => true,
+                'variant_id' => $variant->id,
+                'price' => $variant->price
+            ]);
+        }
+        return response()->json(['available' => false]);
     }
 }

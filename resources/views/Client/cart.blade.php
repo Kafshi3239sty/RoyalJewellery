@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="{{ URL::to('img/RoyalJewellery.png') }}">
 
     <title>Royal Jewellery - Your Shopping Cart</title>
@@ -38,7 +39,7 @@
                         <span id="cartCount" class="cart-badge">0</span>
                     </div>
                     <div class="profile dropdown">
-                        {{ auth()->guard('customer')->user()->name }}
+                        
                         <i class="fa-solid fa-user"></i>
                         <div class="dropdown-menu">
                             <a href="/profile">Profile</a>
@@ -55,45 +56,49 @@
     </header>
 
     <main class="mt-3">
-    <div class="container-fluid">
-        <div class="row gx-4">
-            <div class="col">
-                <div id="shopping-list">
-                    <h3>Shopping Bag</h3>
-                    <ul id="shopping-list-items" class="list-group"></ul>
+        <div class="container-fluid">
+            <div class="row gx-4">
+                <div class="col">
+                    <div id="shopping-list">
+                        <h3>Shopping Bag</h3>
+                        <ul id="shopping-list-items" class="list-group"></ul>
+                    </div>
                 </div>
-            </div>
-            <div class="col-5">
-                <div id="shopping-summary">
-                    <h3>You have 1 item in your Shopping Bag</h3>
-                    <ul id="shopping-list-items" class="list-group"></ul>
-                    <div class="mt-3">
-                        <button class="btn btn-primary w-100 mt-3" onclick="checkout()">Proceed to Checkout</button>
+                <div class="col-5">
+                    <div id="shopping-summary">
+                        <h3>You have 1 item in your Shopping Bag</h3>
+                        <ul id="shopping-list-items" class="list-group list-group-flush">
+                            <li class="list-group-item">Shipping</li>
+                            <li class="list-group-item">SubTotal</li>
+                            <li class="list-group-item">Total</li>
+                        </ul>
+                        <div class="mt-3">
+                            <button class="btn btn-primary w-100 mt-3" onclick="checkout()">Proceed to Checkout</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        loadCartItems();
-    });
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadCartItems();
+        });
 
-    function loadCartItems() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let shoppingList = document.getElementById("shopping-list-items");
+        function loadCartItems() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let shoppingList = document.getElementById("shopping-list-items");
 
-    shoppingList.innerHTML = ""; // Clear previous list
+            shoppingList.innerHTML = ""; // Clear previous list
 
-    if (cart.length === 0) {
-        shoppingList.innerHTML = "<p class='text-muted'>Your cart is empty.</p>";
-        return;
-    }
+            if (cart.length === 0) {
+                shoppingList.innerHTML = "<p class='text-muted'>Your cart is empty.</p>";
+                return;
+            }
 
-    cart.forEach((item, index) => {
-        shoppingList.innerHTML += `
+            cart.forEach((item, index) => {
+                shoppingList.innerHTML += `
             <li class="list-group-item d-flex align-items-center gap-3 p-3">
                 <img src="${item.imageUrl}" alt="${item.name}" class="cart-item-image w-25 h-25">
                 <div>
@@ -107,28 +112,22 @@
                 </div>
             </li>
         `;
-    });
-}
-
-
-    function updateQuantity(index, change) {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart[index].quantity += change;
-
-        if (cart[index].quantity <= 0) {
-            cart.splice(index, 1);
+            });
         }
 
-        localStorage.setItem("cart", JSON.stringify(cart));
-        loadCartItems();
-    }
 
-    function checkout() {
-        alert("Proceeding to checkout...");
-        // Redirect to checkout page
-        window.location.href = "/checkout";
-    }
-</script>
+        function updateQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart[index].quantity += change;
+
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCartItems();
+        }
+    </script>
 
 
 

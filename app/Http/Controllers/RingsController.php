@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rings;
+use App\Models\RingVariants;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -62,6 +63,8 @@ class RingsController extends Controller
         $rings = Rings::all();
         return view('Client/rings', ['rings' => $rings]);
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.

@@ -38,7 +38,7 @@
                         <span id="cartCount" class="cart-badge">0</span>
                     </div>
                     <div class="profile dropdown">
-                        {{ auth()->guard('customer')->user()->name }}
+
                         <i class="fa-solid fa-user"></i>
                         <div class="dropdown-menu">
                             <a href="/profile">Profile</a>
@@ -109,29 +109,27 @@
                     <div class="rs">
                         <p>Ring Size (mm): </p>
                     </div>
-                    <div class="input-group" id="inpg">
-                        <!-- Decrease button -->
-                        <button class="input-group-text" id="decreaseBtn">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-
-                        <!-- Input field -->
-                        <input type="text" class="form-control text-center" id="quantity" value="1" aria-label="Finger Width Size (mm)">
-
-                        <!-- Increase button -->
-                        <button class="input-group-text" id="increaseBtn">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
+                    <div class="input-group">
+                        <input type="text" class="form-control text-center" id="ringSize" name="size" placeholder="Enter size (e.g., 7)" required>
+                        <button type="button" class="btn btn-outline-secondary" onclick="checkSize()">Check Availability</button>
                     </div>
+                    <p id="sizeMessage" class="text-danger mt-2"></p>
                 </div>
 
                 <div class="addcart">
-                    <button type="button" class="btn btn-secondary cart"
-                        onclick="addToCart({{ $ring->id }}, '{{ $ring->name }}', {{ $ring->price }}, '{{ Storage::url($ring->image_url) }}')">
-                        Add to cart
-                    </button>
+                    <form id="addToCartForm" action="{{ route('orders.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" id="ringId" value="{{ $ring->id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <input type="hidden" name="price" id="ringPrice">
 
+                        <button type="submit" class="btn btn-secondary cart " id="addToCartButton">
+                            Add to Cart
+                        </button>
+
+                    </form>
                 </div>
+
                 <button class="btn collapsebtn" type="button" data-bs-toggle="collapse" data-bs-target="#productdescCollapse" aria-expanded="false" aria-controls="collapseExample">
                     <h4>PRODUCT DESCRIPTION</h4><i class="fa-solid fa-angle-down"></i>
                 </button>
@@ -162,19 +160,23 @@
             </div>
         </div>
     </footer>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Shopping Cart</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul id="cartItemsList" class="list-group"></ul>
-            <div class="mt-3">
-                <button class="btn btn-primary w-100" onclick="window.location.href='/cart'">View Shopping Bag</button>
-                <button class="btn btn-primary w-100 mt-3" onclick="window.location.href='/checkout'">Checkout<i class="fa-solid fa-credit-card"></i></button>
-            </div>
-        </div>
+    <div class="offcanvas-body">
+        <ul id="cartItemsList" class="list-group">
+            @foreach ($orders as $order)
+            @foreach ($order->orderdetails as $item)
+            <li class="list-group-item d-flex align-items-center gap-3 p-3">
+                <img src="{{ Storage::url($item->variants->rings->image_url) }}" class="cart-item-image w-25 h-25">
+                <div>
+                    <p><strong>{{ $item->variants->rings->name }}</strong></p>
+                    <p class="text-muted">Size: {{ $item->variants->size }}</p>
+                    <p class="text-muted">Ksh {{ $item->price }} x {{ $item->quantity }}</p>
+                </div>
+            </li>
+            @endforeach
+            @endforeach
+        </ul>
     </div>
+
 
 </body>
 

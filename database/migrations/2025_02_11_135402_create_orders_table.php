@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('total_price');
-            $table->enum('status', ['pending', 'shipped', 'delivered', 'canceled']);
+            $table->enum('status', ['pending', 'awaiting payment', 'paid', 'payment failed', 'processing', 'shipped', 'delivered', 'canceled'])->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

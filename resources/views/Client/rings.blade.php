@@ -36,7 +36,7 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
                 <div class="profile dropdown">
-                    {{ auth()->guard('customer')->user()->name }}
+                    
                     <i class="fa-solid fa-user"></i>
                     <div class="dropdown-menu">
                         <a href="/profile">Profile</a>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderDetails;
 use App\Models\Orders;
+use App\Models\RingVariants;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
@@ -24,20 +26,6 @@ class OrdersController extends Controller
     public function create()
     {
         //
-        $new_order = new Orders();
-        $new_order->user_id = auth('customer')->id();
-        $new_order->total_price;
-        $new_order->status;
-
-        $new_order->save();
-
-        $new_orderDetails = new OrderDetails();
-        $new_orderDetails->order_id;
-        $new_orderDetails->RVID;
-        $new_orderDetails->quantity;
-        $new_orderDetails->price;
-
-        $new_orderDetails->save();
 
     }
 
@@ -46,7 +34,34 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        // Check if ring variant exists
+        $variant = RingVariants::find($request->ring_variant_id);
+        if (!$variant || $variant->Stock_quantity < 1) {
+            return redirect()->back()->with('error', 'Selected size is out of stock.');
+        }
+
+        // Create order
+        $order = Orders::create([
+            'user_id' => $user->id,
+            'total_price' => $request->price * $request->quantity,
+            'status' => 'pending',
+        ]);
+
+        // Create order details
+        OrderDetails::create([
+            'order_id' => $order->id,
+            'RVID' => $variant->id,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+        ]);
+
+        // Reduce stock quantity
+        $variant->Stock_quantity -= $request->quantity;
+        $variant->save();
+
+        return redirect('/cart')->with('success', 'Item added to cart successfully.');
     }
 
     /**
